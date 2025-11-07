@@ -1,0 +1,106 @@
+# Python constraints for 17.3 LTS ML (includes Apache Spark 4.0.0, GPU, Scala 2.13)
+
+These are Python environment constraint files that you can use to mirror the set of Python packages and the Python version used in 17.3 LTS ML (includes Apache Spark 4.0.0, GPU, Scala 2.13).
+
+## Overview
+
+This directory contains constraint files that ensure your local Python environment matches the packages and versions available in the Databricks runtime or serverless environment. By using these constraints, you can develop and test locally with the exact same package versions that will be used in your Databricks environment.
+
+## Files Included
+
+- **`pyproject.toml`** - A complete pyproject.toml file with constraints and project metadata
+- **`uv.toml`** - UV-specific configuration file with constraints and PyTorch index settings (if applicable)
+- **`constraints.txt`** - A standard constraints file compatible with pip and other tools
+
+## Quick Start
+
+### Using pyproject.toml
+
+1. Copy the `pyproject.toml` file to your project directory
+2. Modify the `name` field in the `[project]` section to match your project name
+3. Start using it with UV:
+
+```bash
+uv sync
+```
+
+UV will automatically use the constraints defined in `pyproject.toml` to ensure all dependencies match the Databricks runtime versions.
+
+### Using constraints.txt with pip
+
+If you prefer to use pip, you can use the `constraints.txt` file:
+
+```bash
+pip install --constraint constraints.txt <your-package>
+```
+
+For example, to install a new package while respecting the constraints:
+
+```bash
+pip install --constraint constraints.txt requests
+```
+
+This ensures that `requests` and all its dependencies will be installed at versions compatible with the Databricks runtime environment.
+
+## Recommended: Using UV
+
+We **strongly recommend using UV** for managing your Python environment with these constraints. UV works out of the box with the provided `pyproject.toml` and `uv.toml` files, automatically respecting all constraints and PyTorch index configurations.
+
+### Why UV?
+
+- **Out-of-the-box support**: The `pyproject.toml` and `uv.toml` files are configured specifically for UV
+- **Fast dependency resolution**: UV's resolver is significantly faster than pip
+- **Automatic constraint handling**: UV automatically applies constraints when resolving dependencies
+- **PyTorch support**: If this environment includes PyTorch packages, the PyTorch index configuration is already set up in `uv.toml`
+
+### Basic UV Usage
+
+```bash
+# Sync your environment with the constraints
+uv sync
+
+# Add a new dependency (UV will respect constraints automatically)
+uv add <package-name>
+
+# Run a command in the constrained environment
+uv run python your_script.py
+```
+
+## Using uv.toml with Your Existing pyproject.toml
+
+If you already have a `pyproject.toml` file in your project, you can use the `uv.toml` file alongside it:
+
+1. Copy the `uv.toml` file to your project root (same directory as your `pyproject.toml`)
+2. UV will automatically merge the configuration from both files
+3. The constraints from `uv.toml` will be applied to your project
+
+The `uv.toml` file contains:
+- Python version specification for the pip interface
+- Constraint dependencies (all package versions)
+- PyTorch index configuration (if applicable)
+
+You can keep your existing `pyproject.toml` for project metadata and dependencies, while using `uv.toml` to ensure compatibility with the Databricks runtime.
+
+### Example: Using Both Files
+
+```bash
+# Your project structure:
+# my-project/
+#   ├── pyproject.toml  (your existing project file)
+#   ├── uv.toml         (copied from this directory)
+#   └── src/
+
+# UV will use both files
+uv sync  # Respects constraints from uv.toml and dependencies from pyproject.toml
+```
+
+## Environment Details
+
+- **Python Version**: 3.12
+- **Total Constraints**: 421 packages
+
+## Notes
+
+- The constraints in these files represent the exact package versions available in 17.3 LTS ML (includes Apache Spark 4.0.0, GPU, Scala 2.13)
+- When installing new packages, always use the constraints to ensure compatibility
+- If a package you need is in the omitted packages list, you may need to find an alternative or use a different Databricks runtime version
