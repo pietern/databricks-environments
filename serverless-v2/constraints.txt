@@ -1,4 +1,4 @@
-# constraints.txt file for Databricks Serverless V2
+# constraints.txt file for Databricks Serverless environment version 2
 
 # Omitted packages (not included because they cannot be resolved):
 #   - google-api-core

@@ -1,4 +1,4 @@
-# pyproject.toml file for Databricks Serverless V2
+# pyproject.toml file for Databricks Serverless environment version 2
 
 [project]
 name = "constraint-env-serverless-v2"

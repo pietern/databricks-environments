@@ -1,4 +1,4 @@
-# uv.toml file for Databricks Serverless V4
+# uv.toml file for Databricks Serverless environment version 4
 constraint-dependencies = [
     "annotated-types==0.7.0",
     "anyio==4.6.2",

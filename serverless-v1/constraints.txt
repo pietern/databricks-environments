@@ -1,4 +1,4 @@
-# constraints.txt file for Databricks Serverless V1
+# constraints.txt file for Databricks Serverless environment version 1
 
 anyio==3.5.0
 argon2-cffi==21.3.0

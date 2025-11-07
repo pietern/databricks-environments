@@ -6,25 +6,25 @@ These are Python environment constraint files that you can use to mirror the set
 
 This directory contains constraint files that ensure your local Python environment matches the packages and versions available in the Databricks runtime or serverless environment. By using these constraints, you can develop and test locally with the exact same package versions that will be used in your Databricks environment.
 
-## Files Included
+## Files included
 
 - **`pyproject.toml`** - A complete pyproject.toml file with constraints and project metadata
-- **`uv.toml`** - UV-specific configuration file with constraints and PyTorch index settings (if applicable)
+- **`uv.toml`** - `uv`-specific configuration file with constraints and PyTorch index settings (if applicable)
 - **`constraints.txt`** - A standard constraints file compatible with pip and other tools
 
-## Quick Start
+## Quick start
 
 ### Using pyproject.toml
 
 1. Copy the `pyproject.toml` file to your project directory
 2. Modify the `name` field in the `[project]` section to match your project name
-3. Start using it with UV:
+3. Start using it with `uv`:
 
 ```bash
 uv sync
 ```
 
-UV will automatically use the constraints defined in `pyproject.toml` to ensure all dependencies match the Databricks runtime versions.
+`uv` will automatically use the constraints defined in `pyproject.toml` to ensure all dependencies match the Databricks runtime versions.
 
 ### Using constraints.txt with pip
 
@@ -42,36 +42,36 @@ pip install --constraint constraints.txt requests
 
 This ensures that `requests` and all its dependencies will be installed at versions compatible with the Databricks runtime environment.
 
-## Recommended: Using UV
+## Recommended: Using `uv`
 
-We **strongly recommend using UV** for managing your Python environment with these constraints. UV works out of the box with the provided `pyproject.toml` and `uv.toml` files, automatically respecting all constraints and PyTorch index configurations.
+We **strongly recommend using [`uv`](https://docs.astral.sh/uv/)** for managing your Python environment with these constraints. `uv` works out of the box with the provided `pyproject.toml` and `uv.toml` files, automatically respecting all constraints and PyTorch index configurations.
 
-### Why UV?
+### Why `uv`?
 
-- **Out-of-the-box support**: The `pyproject.toml` and `uv.toml` files are configured specifically for UV
-- **Fast dependency resolution**: UV's resolver is significantly faster than pip
-- **Automatic constraint handling**: UV automatically applies constraints when resolving dependencies
+- **Out-of-the-box support**: The `pyproject.toml` and `uv.toml` files are configured specifically for `uv`
+- **Fast dependency resolution**: `uv`'s resolver is significantly faster than pip
+- **Automatic constraint handling**: `uv` automatically applies constraints when resolving dependencies
 - **PyTorch support**: If this environment includes PyTorch packages, the PyTorch index configuration is already set up in `uv.toml`
 
-### Basic UV Usage
+### Basic `uv` usage
 
 ```bash
 # Sync your environment with the constraints
 uv sync
 
-# Add a new dependency (UV will respect constraints automatically)
+# Add a new dependency (`uv` will respect constraints automatically)
 uv add <package-name>
 
 # Run a command in the constrained environment
 uv run python your_script.py
 ```
 
-## Using uv.toml with Your Existing pyproject.toml
+## Using uv.toml with your existing pyproject.toml
 
 If you already have a `pyproject.toml` file in your project, you can use the `uv.toml` file alongside it:
 
 1. Copy the `uv.toml` file to your project root (same directory as your `pyproject.toml`)
-2. UV will automatically merge the configuration from both files
+2. `uv` will automatically merge the configuration from both files
 3. The constraints from `uv.toml` will be applied to your project
 
 The `uv.toml` file contains:
@@ -81,7 +81,7 @@ The `uv.toml` file contains:
 
 You can keep your existing `pyproject.toml` for project metadata and dependencies, while using `uv.toml` to ensure compatibility with the Databricks runtime.
 
-### Example: Using Both Files
+### Example: Using both files
 
 ```bash
 # Your project structure:
@@ -90,11 +90,11 @@ You can keep your existing `pyproject.toml` for project metadata and dependencie
 #   ├── uv.toml         (copied from this directory)
 #   └── src/
 
-# UV will use both files
+# `uv` will use both files
 uv sync  # Respects constraints from uv.toml and dependencies from pyproject.toml
 ```
 
-## Environment Details
+## Environment details
 
 - **Python Version**: 3.12
 - **Total Constraints**: 404 packages

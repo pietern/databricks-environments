@@ -1,4 +1,4 @@
-# uv.toml file for Databricks Serverless V2
+# uv.toml file for Databricks Serverless environment version 2
 
 # Omitted packages (not included in constraints because they cannot be resolved):
 #   - google-api-core
