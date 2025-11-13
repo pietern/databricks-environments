@@ -1,10 +1,6 @@
 # Python constraints for 14.2 ML (includes Apache Spark 3.5.0, Scala 2.12)
 
-These are Python environment constraint files that you can use to mirror the set of Python packages and the Python version used in 14.2 ML (includes Apache Spark 3.5.0, Scala 2.12).
-
-## Overview
-
-This directory contains constraint files that ensure your local Python environment matches the packages and versions available in the Databricks runtime or serverless environment. By using these constraints, you can develop and test locally with the exact same package versions that will be used in your Databricks environment.
+Constraint files to match your local Python environment to 14.2 ML (includes Apache Spark 3.5.0, Scala 2.12).
 
 ## Files included
 
@@ -28,19 +24,9 @@ uv sync
 
 ### Using constraints.txt with pip
 
-If you prefer to use pip, you can use the `constraints.txt` file:
-
 ```bash
 pip install --constraint constraints.txt <your-package>
 ```
-
-For example, to install a new package while respecting the constraints:
-
-```bash
-pip install --constraint constraints.txt requests
-```
-
-This ensures that `requests` and all its dependencies will be installed at versions compatible with the Databricks runtime environment.
 
 ## Recommended: Using `uv`
 
