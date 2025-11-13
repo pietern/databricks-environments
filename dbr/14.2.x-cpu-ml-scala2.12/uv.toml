@@ -320,9 +320,6 @@ constraint-dependencies = [
     "zipp==3.11.0",
 ]
 
-[pip]
-python-version = "3.10"
-
 # PyTorch index configuration
 [[index]]
 name = "pytorch-cpu"

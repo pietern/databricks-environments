@@ -421,9 +421,6 @@ constraint-dependencies = [
     "zstd==1.5.5.1",
 ]
 
-[pip]
-python-version = "3.12"
-
 # PyTorch index configuration
 [[index]]
 name = "pytorch-cu124"

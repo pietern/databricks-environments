@@ -197,6 +197,3 @@ constraint-dependencies = [
     "zipp==3.17.0",
     "zstandard==0.23.0",
 ]
-
-[pip]
-python-version = "3.12"

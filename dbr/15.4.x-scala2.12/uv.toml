@@ -166,6 +166,3 @@ constraint-dependencies = [
     "widgetsnbextension==3.6.10",
     "zipp==3.11.0",
 ]
-
-[pip]
-python-version = "3.11"

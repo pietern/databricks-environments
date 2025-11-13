@@ -209,6 +209,3 @@ constraint-dependencies = [
     "yapf==0.33.0",
     "zipp==3.17.0",
 ]
-
-[pip]
-python-version = "3.12"

@@ -124,6 +124,3 @@ constraint-dependencies = [
     "widgetsnbextension==3.6.1",
     "yapf==0.31.0",
 ]
-
-[pip]
-python-version = "3.9"

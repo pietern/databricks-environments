@@ -75,9 +75,15 @@ If you already have a `pyproject.toml` file in your project, you can use the `uv
 3. The constraints from `uv.toml` will be applied to your project
 
 The `uv.toml` file contains:
-- Python version specification for the pip interface
 - Constraint dependencies (all package versions)
 - PyTorch index configuration (if applicable)
+
+**Important**: When using `uv.toml` with your existing `pyproject.toml`, you must manually set the Python version in your `pyproject.toml`:
+
+```toml
+[project]
+requires-python = "==3.11.*"
+```
 
 You can keep your existing `pyproject.toml` for project metadata and dependencies, while using `uv.toml` to ensure compatibility with the Databricks runtime.
 

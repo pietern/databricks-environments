@@ -257,9 +257,6 @@ constraint-dependencies = [
     "zipp==3.7.0",
 ]
 
-[pip]
-python-version = "3.9"
-
 # PyTorch index configuration
 [[index]]
 name = "pytorch-cu117"
