@@ -21,10 +21,18 @@ uv sync
 
 `uv` will automatically use the constraints defined in `pyproject.toml` to ensure all dependencies match the Databricks runtime versions.
 
+### Using pyproject.toml with uv
+
+Add a package to your project (constraints are automatically applied):
+
+```bash
+uv add requests
+```
+
 ### Using constraints.txt with pip
 
 ```bash
-pip install --constraint constraints.txt <your-package>
+pip install --constraint constraints.txt requests
 ```
 
 ## Recommended: Using `uv`
@@ -64,8 +72,6 @@ constraint-dependencies = [
     # Copy the constraint-dependencies array from this file
 ]
 ```
-
-**Note**: A standalone `uv.toml` file is not included because `uv` does not currently support `constraint-dependencies` in standalone `uv.toml` files (see [astral-sh/uv#9508](https://github.com/astral-sh/uv/issues/9508)). The constraints must be specified in the `[tool.uv]` section of your `pyproject.toml`.
 
 ## Environment details
 
