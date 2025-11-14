@@ -1,4 +1,4 @@
-# Python constraints for 16.4 LTS ML (includes Apache Spark 3.5.2, Scala 2.12)
+# Python constraints for 16.4 LTS CPU ML
 
 Constraint files to match your local Python environment to 16.4 LTS ML (includes Apache Spark 3.5.2, Scala 2.12).
 

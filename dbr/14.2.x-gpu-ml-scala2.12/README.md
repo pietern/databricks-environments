@@ -1,4 +1,4 @@
-# Python constraints for 14.2 ML (includes Apache Spark 3.5.0, GPU, Scala 2.12)
+# Python constraints for 14.2 GPU ML
 
 Constraint files to match your local Python environment to 14.2 ML (includes Apache Spark 3.5.0, GPU, Scala 2.12).
 

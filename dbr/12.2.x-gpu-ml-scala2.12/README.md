@@ -1,4 +1,4 @@
-# Python constraints for 12.2 LTS ML (includes Apache Spark 3.3.2, GPU, Scala 2.12)
+# Python constraints for 12.2 LTS GPU ML
 
 Constraint files to match your local Python environment to 12.2 LTS ML (includes Apache Spark 3.3.2, GPU, Scala 2.12).
 

@@ -1,4 +1,4 @@
-# Python constraints for 17.1 ML (includes Apache Spark 4.0.0, Scala 2.13)
+# Python constraints for 17.1 CPU ML
 
 Constraint files to match your local Python environment to 17.1 ML (includes Apache Spark 4.0.0, Scala 2.13).
 

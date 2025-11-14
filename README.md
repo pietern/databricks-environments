@@ -28,50 +28,76 @@ Each Databricks environment comes with a specific set of pre-installed Python pa
 Each environment directory contains:
 - **README.md** - Detailed usage instructions
 - **pyproject.toml** - Complete project template with constraints
-- **uv.toml** - UV-specific configuration (works alongside existing pyproject.toml)
 - **constraints.txt** - Standard pip constraints file
 
 ## Quick Start
 
-### Option 1: Using UV (Recommended)
+### Option 1: Using pyproject.toml (Recommended)
 
-Copy the `uv.toml` file to your project directory:
+Copy the `pyproject.toml` file to your project directory and use it with `uv`:
 
 ```bash
-# Copy uv.toml for your target DBR version
-cp dbr/17.3.x-cpu-ml-scala2.13/uv.toml my-project/
+# Copy pyproject.toml for your target environment
+cp serverless/serverless-v4/pyproject.toml my-project/
 
-# Sync your environment
+# Modify the project name in the [project] section
+# Then sync your environment
 cd my-project
 uv sync
 ```
 
-UV will automatically apply the constraints when installing dependencies.
+`uv` will automatically use the constraints defined in `pyproject.toml` to ensure all dependencies match the Databricks environment versions.
 
-### Option 2: Using pyproject.toml
+### Option 2: Using with your existing project
 
-Copy the entire `pyproject.toml` as a starting point:
+If you already have a `pyproject.toml` file, copy the `constraint-dependencies` section from the environment's `[tool.uv]` section into your own `pyproject.toml`. You must also set the Python version to match the Databricks environment:
 
-```bash
-# Copy pyproject.toml
-cp dbr/17.3.x-cpu-ml-scala2.13/pyproject.toml my-project/
+```toml
+[project]
+requires-python = "==3.12.*"  # Match the environment's Python version
 
-# Edit the project name
-# Then sync with UV
-cd my-project
-uv sync
+[tool.uv]
+constraint-dependencies = [
+    # Copy the constraint-dependencies array from the environment's pyproject.toml
+]
 ```
 
-### Option 3: Using pip constraints
+Then run `uv sync` to apply the constraints.
 
-Use the constraints.txt file with pip:
+### Option 3: Using constraints.txt with pip
+
+Use the `constraints.txt` file with pip:
 
 ```bash
 # Install packages with constraints
-pip install --constraint dbr/17.3.x-cpu-ml-scala2.13/constraints.txt your-package
+pip install --constraint serverless/serverless-v4/constraints.txt your-package
 
-# Or add to requirements
-pip install -r requirements.txt --constraint dbr/17.3.x-cpu-ml-scala2.13/constraints.txt
+# Or use with requirements file
+pip install -r requirements.txt --constraint serverless/serverless-v4/constraints.txt
+```
+
+## Recommended: Using `uv`
+
+We **strongly recommend using [`uv`](https://docs.astral.sh/uv/)** for managing your Python environment with these constraints. `uv` works out of the box with the provided `pyproject.toml` files, automatically respecting all constraints.
+
+### Why `uv`?
+
+- **Out-of-the-box support**: The `pyproject.toml` files are configured specifically for `uv`
+- **Fast dependency resolution**: `uv`'s resolver is significantly faster than pip
+- **Automatic constraint handling**: `uv` automatically applies constraints when resolving dependencies
+- **PyTorch support**: ML environments include PyTorch index configurations already set up
+
+### Basic `uv` usage
+
+```bash
+# Sync your environment with the constraints
+uv sync
+
+# Add a new dependency (uv will respect constraints automatically)
+uv add <package-name>
+
+# Run a command in the constrained environment
+uv run python your_script.py
 ```
 
 ## Choosing the Right Environment
@@ -112,7 +138,7 @@ Some environments may have a few packages omitted from constraints due to versio
 
 ### PyTorch Packages
 
-ML environments include PyTorch-specific index configurations in `uv.toml` and `pyproject.toml` to ensure correct PyTorch variants (CPU vs CUDA) are installed.
+ML environments include PyTorch-specific index configurations in `pyproject.toml` to ensure correct PyTorch variants (CPU vs CUDA) are installed.
 
 ### Updates
 

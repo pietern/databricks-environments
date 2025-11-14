@@ -1,4 +1,4 @@
-# Python constraints for 14.3 LTS (includes Apache Spark 3.5.0, Scala 2.12)
+# Python constraints for 14.3 LTS
 
 Constraint files to match your local Python environment to 14.3 LTS (includes Apache Spark 3.5.0, Scala 2.12).
 

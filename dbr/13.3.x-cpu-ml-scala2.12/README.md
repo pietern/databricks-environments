@@ -1,4 +1,4 @@
-# Python constraints for 13.3 LTS ML (includes Apache Spark 3.4.1, Scala 2.12)
+# Python constraints for 13.3 LTS CPU ML
 
 Constraint files to match your local Python environment to 13.3 LTS ML (includes Apache Spark 3.4.1, Scala 2.12).
 

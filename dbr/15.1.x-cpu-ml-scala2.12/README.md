@@ -1,4 +1,4 @@
-# Python constraints for 15.1 ML (includes Apache Spark 3.5.0, Scala 2.12)
+# Python constraints for 15.1 CPU ML
 
 Constraint files to match your local Python environment to 15.1 ML (includes Apache Spark 3.5.0, Scala 2.12).
 

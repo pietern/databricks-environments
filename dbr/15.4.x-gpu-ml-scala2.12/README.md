@@ -1,4 +1,4 @@
-# Python constraints for 15.4 LTS ML (includes Apache Spark 3.5.0, GPU, Scala 2.12)
+# Python constraints for 15.4 LTS GPU ML
 
 Constraint files to match your local Python environment to 15.4 LTS ML (includes Apache Spark 3.5.0, GPU, Scala 2.12).
 

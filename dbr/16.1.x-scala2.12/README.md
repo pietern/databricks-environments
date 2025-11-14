@@ -1,4 +1,4 @@
-# Python constraints for 16.1 (includes Apache Spark 3.5.2, Scala 2.12)
+# Python constraints for 16.1
 
 Constraint files to match your local Python environment to 16.1 (includes Apache Spark 3.5.2, Scala 2.12).
 
