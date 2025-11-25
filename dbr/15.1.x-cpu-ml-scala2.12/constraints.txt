@@ -1,10 +1,10 @@
 # constraints.txt file for Databricks Runtime 15.1 ML (includes Apache Spark 3.5.0, Scala 2.12)
 
 # Omitted packages (pre-installed in runtime but cannot be compiled locally):
-#   - tensorboard
+#   - tensorboard==2.15.1
 
 # Packages incompatible with databricks-connect (masked to allow dev dependency installation):
-#   - databricks-sdk
+#   - databricks-sdk==0.20.0
 
 absl-py==1.0.0
 accelerate==0.25.0

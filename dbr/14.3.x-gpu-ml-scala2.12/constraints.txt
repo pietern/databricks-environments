@@ -1,10 +1,9 @@
 # constraints.txt file for Databricks Runtime 14.3 LTS ML (includes Apache Spark 3.5.0, GPU, Scala 2.12)
 
-# Omitted packages (pre-installed in runtime but cannot be compiled locally):
 # Packages incompatible with databricks-connect (masked to allow dev dependency installation):
-#   - databricks-sdk
-#   - grpcio
-#   - grpcio-status
+#   - databricks-sdk==0.1.6
+#   - grpcio==1.48.2
+#   - grpcio-status==1.48.1
 
 absl-py==1.0.0
 accelerate==0.25.0

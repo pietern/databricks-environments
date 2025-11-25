@@ -1,8 +1,8 @@
 # constraints.txt file for Databricks Serverless environment version 2
 
 # Omitted packages (pre-installed in runtime but cannot be compiled locally):
-#   - google-api-core
-#   - mlflow-skinny
+#   - google-api-core==2.18.0
+#   - mlflow-skinny==2.11.4
 
 anyio==4.11.0
 argon2-cffi==25.1.0

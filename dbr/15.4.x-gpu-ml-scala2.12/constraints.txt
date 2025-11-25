@@ -1,10 +1,9 @@
 # constraints.txt file for Databricks Runtime 15.4 LTS ML (includes Apache Spark 3.5.0, GPU, Scala 2.12)
 
-# Omitted packages (pre-installed in runtime but cannot be compiled locally):
 # Packages incompatible with databricks-connect (masked to allow dev dependency installation):
-#   - databricks-sdk
-#   - py4j
-#   - pyspark
+#   - databricks-sdk==0.20.0
+#   - py4j==0.10.9.9
+#   - pyspark==4.0.1
 
 absl-py==1.0.0
 accelerate==0.31.0

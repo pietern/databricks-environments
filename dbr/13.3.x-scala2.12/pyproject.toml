@@ -11,9 +11,8 @@ dev = [
 ]
 
 [tool.uv]
-# Omitted packages (pre-installed in runtime but cannot be compiled locally):
 # Packages incompatible with databricks-connect (masked to allow dev dependency installation):
-#   - databricks-sdk
+#   - databricks-sdk==0.1.6
 
 constraint-dependencies = [
     "appdirs==1.4.4",

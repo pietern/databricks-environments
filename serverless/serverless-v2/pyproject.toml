@@ -12,8 +12,8 @@ dev = [
 
 [tool.uv]
 # Omitted packages (pre-installed in runtime but cannot be compiled locally):
-#   - google-api-core
-#   - mlflow-skinny
+#   - google-api-core==2.18.0
+#   - mlflow-skinny==2.11.4
 
 constraint-dependencies = [
     "anyio==4.11.0",

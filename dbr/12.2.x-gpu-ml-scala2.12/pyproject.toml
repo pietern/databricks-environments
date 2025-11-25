@@ -12,12 +12,12 @@ dev = [
 
 [tool.uv]
 # Omitted packages (pre-installed in runtime but cannot be compiled locally):
-#   - mleap
-#   - mlflow-skinny
+#   - mleap==0.20.0
+#   - mlflow-skinny==2.1.1
 
 # Packages incompatible with databricks-connect (masked to allow dev dependency installation):
-#   - py4j
-#   - pyspark
+#   - py4j==0.10.9.7
+#   - pyspark==3.5.7
 
 constraint-dependencies = [
     "absl-py==1.0.0",
