@@ -5,6 +5,11 @@ name = "constraint-env-serverless-v4"
 version = "0.1.0"
 requires-python = "==3.12.*"
 
+[project.optional-dependencies]
+dev = [
+    "databricks-connect~=17.2.0",
+]
+
 [tool.uv]
 constraint-dependencies = [
     "annotated-types==0.7.0",
@@ -42,7 +47,6 @@ constraint-dependencies = [
     "cryptography==43.0.3",
     "cycler==0.11.0",
     "cython==3.0.12",
-    "databricks-connect==17.2.3",
     "databricks-sdk==0.49.0",
     "debugpy==1.8.11",
     "decorator==5.1.1",

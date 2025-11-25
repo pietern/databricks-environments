@@ -1,5 +1,9 @@
 # constraints.txt file for Databricks Runtime 13.3 LTS (includes Apache Spark 3.4.1, Scala 2.12)
 
+# Omitted packages (pre-installed in runtime but cannot be compiled locally):
+# Packages incompatible with databricks-connect (masked to allow dev dependency installation):
+#   - databricks-sdk
+
 appdirs==1.4.4
 argon2-cffi==21.3.0
 argon2-cffi-bindings==21.2.0
@@ -20,7 +24,6 @@ click==8.0.4
 cryptography==37.0.1
 cycler==0.11.0
 cython==0.29.32
-databricks-sdk==0.1.6
 debugpy==1.6.0
 decorator==5.1.1
 defusedxml==0.7.1

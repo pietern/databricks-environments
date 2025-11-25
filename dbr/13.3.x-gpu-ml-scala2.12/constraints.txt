@@ -1,7 +1,10 @@
 # constraints.txt file for Databricks Runtime 13.3 LTS ML (includes Apache Spark 3.4.1, GPU, Scala 2.12)
 
-# Omitted packages (pre-installed in DBR but cannot be compiled locally):
+# Omitted packages (pre-installed in runtime but cannot be compiled locally):
 #   - mleap
+
+# Packages incompatible with databricks-connect (masked to allow dev dependency installation):
+#   - databricks-sdk
 
 absl-py==1.0.0
 accelerate==0.20.3
@@ -52,7 +55,6 @@ databricks-automl-runtime==0.2.17
 databricks-cli==0.17.7
 databricks-feature-engineering==0.1.2
 databricks-feature-store==0.14.3
-databricks-sdk==0.1.6
 dataclasses-json==0.5.14
 datasets==2.13.1
 dbl-tempo==0.1.26

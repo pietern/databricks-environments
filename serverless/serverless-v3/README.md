@@ -4,7 +4,7 @@ Constraint files to match your local Python environment to Databricks Serverless
 
 ## Files included
 
-- **`pyproject.toml`** - A complete pyproject.toml file with constraints and project metadata
+- **`pyproject.toml`** - A complete pyproject.toml file with constraints, databricks-connect dev dependency, and project metadata
 - **`constraints.txt`** - A standard constraints file compatible with pip and other tools
 
 ## Quick start
@@ -16,10 +16,10 @@ Constraint files to match your local Python environment to Databricks Serverless
 3. Start using it with `uv`:
 
 ```bash
-uv sync
+uv sync --extra dev
 ```
 
-`uv` will automatically use the constraints defined in `pyproject.toml` to ensure all dependencies match the Databricks runtime versions.
+`uv` will automatically use the constraints defined in `pyproject.toml` to ensure all dependencies match the Databricks runtime versions. Installing with `--extra dev` will also install databricks-connect for local development.
 
 ### Using pyproject.toml with uv
 
@@ -75,9 +75,11 @@ constraint-dependencies = [
 ## Environment details
 
 - **Python Version**: 3.12
-- **Total Constraints**: 196 packages
+- **Total Constraints**: 195 packages
+- **Databricks Connect**: 16.4 (available as dev dependency)
 
 ## Notes
 
 - The constraints in these files represent the exact package versions available in Databricks Serverless environment version 3
 - When installing new packages, always use the constraints to ensure compatibility
+- To use databricks-connect for local development, install with: `uv sync --extra dev`

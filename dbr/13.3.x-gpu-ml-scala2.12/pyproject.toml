@@ -5,9 +5,17 @@ name = "constraint-env-13-3-x-gpu-ml-scala2-12"
 version = "0.1.0"
 requires-python = "==3.10.*"
 
+[project.optional-dependencies]
+dev = [
+    "databricks-connect~=13.3.0",
+]
+
 [tool.uv]
-# Omitted packages (pre-installed in DBR but cannot be compiled locally):
+# Omitted packages (pre-installed in runtime but cannot be compiled locally):
 #   - mleap
+
+# Packages incompatible with databricks-connect (masked to allow dev dependency installation):
+#   - databricks-sdk
 
 constraint-dependencies = [
     "absl-py==1.0.0",
@@ -59,7 +67,6 @@ constraint-dependencies = [
     "databricks-cli==0.17.7",
     "databricks-feature-engineering==0.1.2",
     "databricks-feature-store==0.14.3",
-    "databricks-sdk==0.1.6",
     "dataclasses-json==0.5.14",
     "datasets==2.13.1",
     "dbl-tempo==0.1.26",

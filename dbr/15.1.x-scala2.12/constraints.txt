@@ -1,5 +1,9 @@
 # constraints.txt file for Databricks Runtime 15.1  (includes Apache Spark 3.5.0, Scala 2.12)
 
+# Omitted packages (pre-installed in runtime but cannot be compiled locally):
+# Packages incompatible with databricks-connect (masked to allow dev dependency installation):
+#   - databricks-sdk
+
 asttokens==2.0.5
 astunparse==1.6.3
 azure-core==1.30.1
@@ -22,7 +26,6 @@ contourpy==1.0.5
 cryptography==41.0.3
 cycler==0.11.0
 cython==0.29.32
-databricks-sdk==0.20.0
 debugpy==1.6.7
 decorator==5.1.1
 distlib==0.3.8

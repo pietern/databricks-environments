@@ -1,5 +1,9 @@
 # constraints.txt file for Databricks Runtime 16.4 LTS ML (includes Apache Spark 3.5.2, GPU, Scala 2.12)
 
+# Omitted packages (pre-installed in runtime but cannot be compiled locally):
+# Packages incompatible with databricks-connect (masked to allow dev dependency installation):
+#   - databricks-sdk
+
 absl-py==1.0.0
 accelerate==1.5.2
 aiohttp==3.9.5
@@ -61,7 +65,6 @@ cython==3.0.11
 dacite==1.9.2
 databricks-automl-runtime==0.2.21
 databricks-feature-engineering==0.10.2
-databricks-sdk==0.30.0
 datasets==3.5.0
 dbl-tempo==0.1.26
 debugpy==1.6.7

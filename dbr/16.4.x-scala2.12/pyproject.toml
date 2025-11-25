@@ -5,7 +5,16 @@ name = "constraint-env-16-4-x-scala2-12"
 version = "0.1.0"
 requires-python = "==3.12.*"
 
+[project.optional-dependencies]
+dev = [
+    "databricks-connect~=16.4.0",
+]
+
 [tool.uv]
+# Omitted packages (pre-installed in runtime but cannot be compiled locally):
+# Packages incompatible with databricks-connect (masked to allow dev dependency installation):
+#   - databricks-sdk
+
 constraint-dependencies = [
     "annotated-types==0.7.0",
     "anyio==4.11.0",
@@ -38,7 +47,6 @@ constraint-dependencies = [
     "cryptography==42.0.5",
     "cycler==0.11.0",
     "cython==3.0.11",
-    "databricks-sdk==0.30.0",
     "debugpy==1.6.7",
     "decorator==5.1.1",
     "defusedxml==0.7.1",
@@ -90,7 +98,7 @@ constraint-dependencies = [
     "jupyter-lsp==2.3.0",
     "jupyter-server==2.17.0",
     "jupyter-server-terminals==0.5.3",
-    "jupyterlab==4.4.10",
+    "jupyterlab==4.5.0",
     "jupyterlab-pygments==0.3.0",
     "jupyterlab-server==2.28.0",
     "jupyterlab-widgets==1.1.11",
@@ -112,7 +120,7 @@ constraint-dependencies = [
     "nbformat==5.10.4",
     "nest-asyncio==1.6.0",
     "nodeenv==1.9.1",
-    "notebook==7.4.7",
+    "notebook==7.5.0",
     "notebook-shim==0.2.4",
     "numpy==1.26.4",
     "oauthlib==3.2.2",
@@ -165,7 +173,7 @@ constraint-dependencies = [
     "rfc3986-validator==0.1.1",
     "rfc3987-syntax==1.1.0",
     "rope==1.12.0",
-    "rpds-py==0.28.0",
+    "rpds-py==0.29.0",
     "rsa==4.9",
     "s3transfer==0.10.2",
     "scikit-learn==1.4.2",

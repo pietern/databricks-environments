@@ -5,6 +5,11 @@ name = "constraint-env-16-1-x-gpu-ml-scala2-12"
 version = "0.1.0"
 requires-python = "==3.12.*"
 
+[project.optional-dependencies]
+dev = [
+    "databricks-connect~=16.1.0",
+]
+
 [tool.uv]
 constraint-dependencies = [
     "absl-py==1.0.0",

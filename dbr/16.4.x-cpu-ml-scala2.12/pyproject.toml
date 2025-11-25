@@ -5,7 +5,16 @@ name = "constraint-env-16-4-x-cpu-ml-scala2-12"
 version = "0.1.0"
 requires-python = "==3.12.*"
 
+[project.optional-dependencies]
+dev = [
+    "databricks-connect~=16.4.0",
+]
+
 [tool.uv]
+# Omitted packages (pre-installed in runtime but cannot be compiled locally):
+# Packages incompatible with databricks-connect (masked to allow dev dependency installation):
+#   - databricks-sdk
+
 constraint-dependencies = [
     "absl-py==1.0.0",
     "accelerate==1.5.2",
@@ -68,7 +77,6 @@ constraint-dependencies = [
     "dacite==1.9.2",
     "databricks-automl-runtime==0.2.21",
     "databricks-feature-engineering==0.10.2",
-    "databricks-sdk==0.30.0",
     "datasets==3.5.0",
     "dbl-tempo==0.1.26",
     "debugpy==1.6.7",

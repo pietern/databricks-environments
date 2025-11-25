@@ -1,5 +1,9 @@
 # constraints.txt file for Databricks Runtime 15.4 LTS (includes Apache Spark 3.5.0, Scala 2.12)
 
+# Omitted packages (pre-installed in runtime but cannot be compiled locally):
+# Packages incompatible with databricks-connect (masked to allow dev dependency installation):
+#   - databricks-sdk
+
 anyio==3.7.1
 argon2-cffi==25.1.0
 argon2-cffi-bindings==25.1.0
@@ -28,7 +32,6 @@ contourpy==1.0.5
 cryptography==41.0.3
 cycler==0.11.0
 cython==0.29.32
-databricks-sdk==0.20.0
 debugpy==1.6.7
 decorator==5.1.1
 defusedxml==0.7.1
@@ -129,7 +132,7 @@ pyyaml==6.0
 pyzmq==23.2.0
 referencing==0.37.0
 requests==2.31.0
-rpds-py==0.28.0
+rpds-py==0.29.0
 rsa==4.9
 s3transfer==0.10.2
 scikit-learn==1.3.0

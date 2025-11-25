@@ -5,7 +5,18 @@ name = "constraint-env-14-2-x-gpu-ml-scala2-12"
 version = "0.1.0"
 requires-python = "==3.10.*"
 
+[project.optional-dependencies]
+dev = [
+    "databricks-connect~=14.2.0",
+]
+
 [tool.uv]
+# Omitted packages (pre-installed in runtime but cannot be compiled locally):
+# Packages incompatible with databricks-connect (masked to allow dev dependency installation):
+#   - databricks-sdk
+#   - grpcio
+#   - grpcio-status
+
 constraint-dependencies = [
     "absl-py==1.0.0",
     "accelerate==0.23.0",
@@ -59,7 +70,6 @@ constraint-dependencies = [
     "databricks-cli==0.18.0",
     "databricks-feature-engineering==0.1.2",
     "databricks-feature-store==0.16.4",
-    "databricks-sdk==0.1.6",
     "dataclasses-json==0.6.2",
     "datasets==2.14.5",
     "dbl-tempo==0.1.26",
@@ -100,8 +110,6 @@ constraint-dependencies = [
     "google-resumable-media==2.6.0",
     "googleapis-common-protos==1.61.0",
     "greenlet==2.0.1",
-    "grpcio==1.48.2",
-    "grpcio-status==1.48.1",
     "gunicorn==20.1.0",
     "gviz-api==1.10.0",
     "h5py==3.7.0",

@@ -1,8 +1,12 @@
 # constraints.txt file for Databricks Runtime 12.2 LTS ML (includes Apache Spark 3.3.2, GPU, Scala 2.12)
 
-# Omitted packages (pre-installed in DBR but cannot be compiled locally):
+# Omitted packages (pre-installed in runtime but cannot be compiled locally):
 #   - mleap
 #   - mlflow-skinny
+
+# Packages incompatible with databricks-connect (masked to allow dev dependency installation):
+#   - py4j
+#   - pyspark
 
 absl-py==1.0.0
 argon2-cffi==21.3.0
@@ -156,7 +160,6 @@ psutil==5.8.0
 psycopg2==2.9.3
 ptyprocess==0.7.0
 pure-eval==0.2.2
-py4j==0.10.9.7
 pyarrow==7.0.0
 pyarrow-hotfix==0.5
 pyasn1==0.4.8
@@ -173,7 +176,6 @@ pyodbc==4.0.32
 pyparsing==3.0.4
 pyright==1.1.283
 pyrsistent==0.18.0
-pyspark==3.5.7
 python-dateutil==2.8.2
 python-editor==1.0.4
 python-lsp-jsonrpc==1.0.0

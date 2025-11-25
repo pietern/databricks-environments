@@ -4,7 +4,7 @@ Constraint files to match your local Python environment to 13.3 LTS (includes Ap
 
 ## Files included
 
-- **`pyproject.toml`** - A complete pyproject.toml file with constraints and project metadata
+- **`pyproject.toml`** - A complete pyproject.toml file with constraints, databricks-connect dev dependency, and project metadata
 - **`constraints.txt`** - A standard constraints file compatible with pip and other tools
 
 ## Quick start
@@ -16,10 +16,10 @@ Constraint files to match your local Python environment to 13.3 LTS (includes Ap
 3. Start using it with `uv`:
 
 ```bash
-uv sync
+uv sync --extra dev
 ```
 
-`uv` will automatically use the constraints defined in `pyproject.toml` to ensure all dependencies match the Databricks runtime versions.
+`uv` will automatically use the constraints defined in `pyproject.toml` to ensure all dependencies match the Databricks runtime versions. Installing with `--extra dev` will also install databricks-connect for local development.
 
 ### Using pyproject.toml with uv
 
@@ -75,9 +75,13 @@ constraint-dependencies = [
 ## Environment details
 
 - **Python Version**: 3.10
-- **Total Constraints**: 142 packages
+- **Total Constraints**: 141 packages
+- **Databricks Connect**: 13.3 (available as dev dependency)
+- **Incompatible Packages**: 1 packages (databricks-sdk) - these packages conflict with databricks-connect and have been masked to allow local development
 
 ## Notes
 
 - The constraints in these files represent the exact package versions available in 13.3 LTS (includes Apache Spark 3.4.1, Scala 2.12)
 - When installing new packages, always use the constraints to ensure compatibility
+- To use databricks-connect for local development, install with: `uv sync --extra dev`
+- Incompatible packages (databricks-sdk) have been masked because they conflict with databricks-connect. These are pre-installed in the Databricks runtime

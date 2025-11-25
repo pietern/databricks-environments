@@ -5,7 +5,18 @@ name = "constraint-env-15-4-x-cpu-ml-scala2-12"
 version = "0.1.0"
 requires-python = "==3.11.*"
 
+[project.optional-dependencies]
+dev = [
+    "databricks-connect~=15.4.0",
+]
+
 [tool.uv]
+# Omitted packages (pre-installed in runtime but cannot be compiled locally):
+# Packages incompatible with databricks-connect (masked to allow dev dependency installation):
+#   - databricks-sdk
+#   - py4j
+#   - pyspark
+
 constraint-dependencies = [
     "absl-py==1.0.0",
     "accelerate==0.31.0",
@@ -60,7 +71,6 @@ constraint-dependencies = [
     "dacite==1.8.1",
     "databricks-automl-runtime==0.2.21",
     "databricks-feature-engineering==0.8.0",
-    "databricks-sdk==0.20.0",
     "dataclasses-json==0.6.7",
     "datasets==2.19.1",
     "dbl-tempo==0.1.26",
@@ -244,7 +254,6 @@ constraint-dependencies = [
     "pure-eval==0.2.2",
     "py-cpuinfo==8.0.0",
     "py-spy==0.3.14",
-    "py4j==0.10.9.9",
     "pyarrow==14.0.1",
     "pyarrow-hotfix==0.6",
     "pyasn1==0.4.8",
@@ -260,7 +269,6 @@ constraint-dependencies = [
     "pyopenssl==23.2.0",
     "pyparsing==3.0.9",
     "pyrsistent==0.18.0",
-    "pyspark==4.0.1",
     "pytesseract==0.3.10",
     "python-dateutil==2.8.2",
     "python-editor==1.0.4",
