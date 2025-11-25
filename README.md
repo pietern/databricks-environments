@@ -134,7 +134,7 @@ Check your workspace's serverless version in the Databricks documentation or wor
 
 ### Omitted Packages
 
-Some environments may have a few packages omitted from constraints due to version conflicts with the local environment. These packages are pre-installed in Databricks and work correctly there. See the README in each environment directory for specifics.
+Some older DBR environments (primarily versions 12.2.x through 16.4.x) have a few packages omitted from constraints due to version conflicts with databricks-connect or local build dependencies. These packages are pre-installed in Databricks and work correctly there. See the README in each environment directory for specifics.
 
 ### PyTorch Packages
 
