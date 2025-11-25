@@ -31,29 +31,32 @@ test_environment() {
 
         if [ "$test_mode" = "add" ]; then
             # Test mode 1: uv sync then uv add databricks-connect
+            echo "Running uv sync..."
             echo "Running uv sync..." >> "$result_file"
-            if ! uv sync >> "$result_file" 2>&1; then
-                echo "❌ uv sync failed" >> "$result_file"
+            if ! uv sync 2>&1 | tee -a "$result_file"; then
+                echo "❌ uv sync failed" | tee -a "$result_file"
                 exit 1
             fi
-            echo "✅ uv sync succeeded" >> "$result_file"
-            echo "" >> "$result_file"
+            echo "✅ uv sync succeeded" | tee -a "$result_file"
+            echo "" | tee -a "$result_file"
 
+            echo "Adding databricks-connect..."
             echo "Adding databricks-connect..." >> "$result_file"
-            if ! uv add databricks-connect >> "$result_file" 2>&1; then
-                echo "❌ Failed to add databricks-connect" >> "$result_file"
+            if ! uv add databricks-connect 2>&1 | tee -a "$result_file"; then
+                echo "❌ Failed to add databricks-connect" | tee -a "$result_file"
                 exit 1
             fi
-            echo "✅ databricks-connect added successfully" >> "$result_file"
+            echo "✅ databricks-connect added successfully" | tee -a "$result_file"
 
         elif [ "$test_mode" = "sync-dev" ]; then
             # Test mode 2: uv sync --extra dev (databricks-connect already in dev deps)
+            echo "Running uv sync --extra dev..."
             echo "Running uv sync --extra dev..." >> "$result_file"
-            if ! uv sync --extra dev >> "$result_file" 2>&1; then
-                echo "❌ uv sync --extra dev failed" >> "$result_file"
+            if ! uv sync --extra dev 2>&1 | tee -a "$result_file"; then
+                echo "❌ uv sync --extra dev failed" | tee -a "$result_file"
                 exit 1
             fi
-            echo "✅ uv sync --extra dev succeeded" >> "$result_file"
+            echo "✅ uv sync --extra dev succeeded" | tee -a "$result_file"
         fi
 
         echo "" >> "$result_file"
