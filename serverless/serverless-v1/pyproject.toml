@@ -5,7 +5,7 @@ name = "constraint-env-serverless-v1"
 version = "0.1.0"
 requires-python = "==3.10.*"
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
     "databricks-connect~=14.3.0",
 ]

@@ -15,49 +15,26 @@ else
 fi
 
 # Test a single environment
-# Args: $1=env_path, $2=test_mode (add|sync-dev), $3=test_dir, $4=result_file
+# Args: $1=env_path, $2=test_dir, $3=result_file, $4=work_dir
 test_environment() {
     local env_path="$1"
-    local test_mode="$2"
-    local test_dir="$3"
-    local result_file="$4"
-    local work_dir="$5"
+    local test_dir="$2"
+    local result_file="$3"
+    local work_dir="$4"
 
     (
         cd "$test_dir"
         echo "=== Environment: $env_path ===" > "$result_file"
-        echo "=== Test mode: $test_mode ===" >> "$result_file"
         echo "" >> "$result_file"
 
-        if [ "$test_mode" = "add" ]; then
-            # Test mode 1: uv sync then uv add databricks-connect
-            echo "Running uv sync..."
-            echo "Running uv sync..." >> "$result_file"
-            if ! uv sync 2>&1 | tee -a "$result_file"; then
-                echo "❌ uv sync failed" | tee -a "$result_file"
-                exit 1
-            fi
-            echo "✅ uv sync succeeded" | tee -a "$result_file"
-            echo "" | tee -a "$result_file"
-
-            echo "Adding databricks-connect..."
-            echo "Adding databricks-connect..." >> "$result_file"
-            if ! uv add databricks-connect 2>&1 | tee -a "$result_file"; then
-                echo "❌ Failed to add databricks-connect" | tee -a "$result_file"
-                exit 1
-            fi
-            echo "✅ databricks-connect added successfully" | tee -a "$result_file"
-
-        elif [ "$test_mode" = "sync-dev" ]; then
-            # Test mode 2: uv sync --extra dev (databricks-connect already in dev deps)
-            echo "Running uv sync --extra dev..."
-            echo "Running uv sync --extra dev..." >> "$result_file"
-            if ! uv sync --extra dev 2>&1 | tee -a "$result_file"; then
-                echo "❌ uv sync --extra dev failed" | tee -a "$result_file"
-                exit 1
-            fi
-            echo "✅ uv sync --extra dev succeeded" | tee -a "$result_file"
+        # Run uv sync (dev dependencies are installed by default)
+        echo "Running uv sync..."
+        echo "Running uv sync..." >> "$result_file"
+        if ! uv sync 2>&1 | tee -a "$result_file"; then
+            echo "❌ uv sync failed" | tee -a "$result_file"
+            exit 1
         fi
+        echo "✅ uv sync succeeded" | tee -a "$result_file"
 
         echo "" >> "$result_file"
         echo "Checking databricks-connect installation..." >> "$result_file"

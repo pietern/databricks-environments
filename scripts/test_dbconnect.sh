@@ -9,18 +9,6 @@ WORK_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 # Source common functions
 source "$SCRIPT_DIR/test_dbconnect_common.sh"
 
-# Parse arguments
-TEST_MODE="${1:-add}"  # Default to "add" mode
-PARALLEL="${2:-1}"     # Number of parallel tests (default: 1 for CI safety)
-
-# Validate test mode
-if [[ "$TEST_MODE" != "add" && "$TEST_MODE" != "sync-dev" ]]; then
-    echo "Usage: $0 <test_mode> [parallel_jobs]"
-    echo "  test_mode: 'add' (uv add) or 'sync-dev' (uv sync --extra dev)"
-    echo "  parallel_jobs: number of parallel tests (default: 1)"
-    exit 1
-fi
-
 # Change to working directory (constraint_output/)
 cd "$WORK_DIR"
 
@@ -33,17 +21,10 @@ if [ -z "$ENVS" ]; then
 fi
 
 # Create output directory for results
-if [ "$TEST_MODE" = "add" ]; then
-    MODE_NAME="uv-add"
-else
-    MODE_NAME="uv-sync-dev"
-fi
-
-RESULTS_DIR="$WORK_DIR/tmp/dbconnect-test-${MODE_NAME}-$(date +%Y%m%d-%H%M%S)"
+RESULTS_DIR="$WORK_DIR/tmp/dbconnect-test-$(date +%Y%m%d-%H%M%S)"
 mkdir -p "$RESULTS_DIR"
 
 echo "Testing databricks-connect installation for all environments"
-echo "Test mode: $TEST_MODE"
 echo "Results directory: $RESULTS_DIR"
 echo ""
 
@@ -66,7 +47,7 @@ for env_path in $ENVS; do
     fi
 
     # Create test directory
-    TEST_DIR="$WORK_DIR/tmp/dbconnect-test-${MODE_NAME}-${ENV_NAME}"
+    TEST_DIR="$WORK_DIR/tmp/dbconnect-test-${ENV_NAME}"
     rm -rf "$TEST_DIR"
     mkdir -p "$TEST_DIR"
 
@@ -82,7 +63,7 @@ for env_path in $ENVS; do
     # Run test
     RESULT_FILE="$RESULTS_DIR/${env_path//\//_}.txt"
 
-    if test_environment "$env_path" "$TEST_MODE" "$TEST_DIR" "$RESULT_FILE" "$WORK_DIR"; then
+    if test_environment "$env_path" "$TEST_DIR" "$RESULT_FILE" "$WORK_DIR"; then
         echo "  ✅ SUCCESS"
         SUCCESS=$((SUCCESS + 1))
     else
@@ -104,7 +85,7 @@ done
 # Generate summary report
 SUMMARY_FILE="$RESULTS_DIR/SUMMARY.txt"
 {
-    echo "=== Test Summary: $MODE_NAME ==="
+    echo "=== Test Summary ==="
     echo ""
     echo "Total environments tested: $TOTAL"
     echo "Successful: $SUCCESS"
@@ -118,7 +99,7 @@ SUMMARY_FILE="$RESULTS_DIR/SUMMARY.txt"
 } > "$SUMMARY_FILE"
 
 # Print summary
-print_summary "$MODE_NAME" "$TOTAL" "$SUCCESS" "$FAILED" "$RESULTS_DIR"
+print_summary "uv sync" "$TOTAL" "$SUCCESS" "$FAILED" "$RESULTS_DIR"
 
 # Exit with error if any tests failed
 if [ "$FAILED" -gt 0 ]; then

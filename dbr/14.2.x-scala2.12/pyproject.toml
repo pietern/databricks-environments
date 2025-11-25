@@ -5,7 +5,7 @@ name = "constraint-env-14-2-x-scala2-12"
 version = "0.1.0"
 requires-python = "==3.10.*"
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
     "databricks-connect~=14.2.0",
 ]

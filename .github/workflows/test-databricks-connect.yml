@@ -10,8 +10,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-manual-addition:
-    name: uv add
+  test:
+    name: uv sync
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
@@ -25,23 +25,5 @@ jobs:
           enable-cache: true
           cache-dependency-glob: "**/pyproject.toml"
 
-      - name: Test databricks-connect manual addition
-        run: ./scripts/test_dbconnect.sh add
-
-  test-dev-dependencies:
-    name: uv sync --extra dev
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v4
-        with:
-          enable-cache: true
-          cache-dependency-glob: "**/pyproject.toml"
-
-      - name: Test databricks-connect dev dependencies
-        run: ./scripts/test_dbconnect.sh sync-dev
+      - name: Test databricks-connect installation
+        run: ./.scripts/test_dbconnect.sh
