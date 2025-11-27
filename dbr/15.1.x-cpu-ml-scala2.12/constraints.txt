@@ -305,9 +305,9 @@ tiktoken~=0.5.2
 tinycss2~=1.2.1
 tokenize-rt~=4.2.1
 tokenizers~=0.15.0
-torch~=2.1.2+cpu
+torch==2.1.2+cpu
 torcheval~=0.0.7
-torchvision~=0.16.2+cpu
+torchvision==0.16.2+cpu
 tornado~=6.3.2
 tqdm~=4.65.0
 traitlets~=5.7.1

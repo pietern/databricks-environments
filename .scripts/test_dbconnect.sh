@@ -39,13 +39,6 @@ for env_path in $ENVS; do
     COUNT=$((COUNT + 1))
     ENV_NAME=$(basename "$env_path")
 
-    if [ -z "${CI:-}" ]; then
-        echo "[$COUNT/$TOTAL] Testing: $env_path"
-    else
-        # In CI, use GitHub Actions log grouping
-        echo "::group::[$COUNT/$TOTAL] Testing: $env_path"
-    fi
-
     # Create test directory
     TEST_DIR="$WORK_DIR/tmp/dbconnect-test-${ENV_NAME}"
     rm -rf "$TEST_DIR"
@@ -53,10 +46,17 @@ for env_path in $ENVS; do
 
     # Copy pyproject.toml
     if ! cp "$WORK_DIR/$env_path/pyproject.toml" "$TEST_DIR/"; then
-        echo "  ❌ FAILED: Could not copy pyproject.toml"
+        if [ -z "${CI:-}" ]; then
+            echo "[$COUNT/$TOTAL] ❌ FAILED: $env_path (Could not copy pyproject.toml)"
+        else
+            echo "[$COUNT/$TOTAL] ❌ FAILED: $env_path (Could not copy pyproject.toml)"
+            echo "::group::View logs for $env_path"
+            echo "Could not copy pyproject.toml"
+            echo "::endgroup::"
+        fi
         FAILED=$((FAILED + 1))
         FAILED_ENVS="${FAILED_ENVS}${env_path}\n"
-        [ -n "${CI:-}" ] && echo "::endgroup::"
+        echo ""
         continue
     fi
 
@@ -64,21 +64,29 @@ for env_path in $ENVS; do
     RESULT_FILE="$RESULTS_DIR/${env_path//\//_}.txt"
 
     if test_environment "$env_path" "$TEST_DIR" "$RESULT_FILE" "$WORK_DIR"; then
-        echo "  ✅ SUCCESS"
+        if [ -z "${CI:-}" ]; then
+            echo "[$COUNT/$TOTAL] ✅ SUCCESS: $env_path"
+        else
+            echo "[$COUNT/$TOTAL] ✅ SUCCESS: $env_path"
+            echo "::group::View logs for $env_path"
+            tail -20 "$RESULT_FILE"
+            echo "::endgroup::"
+        fi
         SUCCESS=$((SUCCESS + 1))
     else
-        echo "  ❌ FAILED"
-        FAILED=$((FAILED + 1))
-        FAILED_ENVS="${FAILED_ENVS}${env_path}\n"
-
-        # In CI, print the error details
-        if [ -n "${CI:-}" ]; then
+        if [ -z "${CI:-}" ]; then
+            echo "[$COUNT/$TOTAL] ❌ FAILED: $env_path"
+        else
+            echo "[$COUNT/$TOTAL] ❌ FAILED: $env_path"
+            echo "::group::View logs for $env_path"
             echo "::error::Failed to install databricks-connect for $env_path"
             tail -20 "$RESULT_FILE"
+            echo "::endgroup::"
         fi
+        FAILED=$((FAILED + 1))
+        FAILED_ENVS="${FAILED_ENVS}${env_path}\n"
     fi
 
-    [ -n "${CI:-}" ] && echo "::endgroup::"
     echo ""
 done
 

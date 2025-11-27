@@ -292,8 +292,8 @@ tinycss2~=1.2.1
 tokenize-rt~=4.2.1
 tokenizers~=0.14.0
 tomli~=2.0.1
-torch~=2.0.1+cu118
-torchvision~=0.15.2+cu118
+torch==2.0.1+cu118
+torchvision==0.15.2+cu118
 tornado~=6.1
 tqdm~=4.64.1
 traitlets~=5.7.1
