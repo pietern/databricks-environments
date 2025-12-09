@@ -75,7 +75,7 @@ constraint-dependencies = [
 ## Environment details
 
 - **Python Version**: 3.12
-- **Total Constraints**: 206 packages
+- **Total Constraints**: 205 packages
 - **Databricks Connect**: 16.4 (available as dev dependency)
 - **Incompatible Packages**: 1 packages (databricks-sdk) - these packages conflict with databricks-connect and have been masked to allow local development
 

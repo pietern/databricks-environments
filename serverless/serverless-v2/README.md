@@ -75,7 +75,7 @@ constraint-dependencies = [
 ## Environment details
 
 - **Python Version**: 3.11
-- **Total Constraints**: 187 packages
+- **Total Constraints**: 186 packages
 - **Databricks Connect**: 15.4 (available as dev dependency)
 - **Omitted Packages**: 2 packages (google-api-core, mlflow-skinny) - these packages are pre-installed in the Databricks environment but cannot be compiled locally due to build dependencies or version conflicts
 
